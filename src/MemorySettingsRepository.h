@@ -11,6 +11,8 @@ public:
 
 	virtual bool KeyExists(const AString keyname) const override;
 
+	virtual bool HasValue(const AString & a_KeyName, const AString & a_ValueName) const override;
+
 	virtual int AddKeyName(const AString & keyname) override;
 
 	virtual bool AddKeyComment(const AString & keyname, const AString & comment) override;

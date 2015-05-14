@@ -89,7 +89,7 @@ public:
 	void Clear(void);
 	
 	/** Returns true iff the specified value exists. */
-	bool HasValue(const AString & a_KeyName, const AString & a_ValueName);
+	bool HasValue(const AString & a_KeyName, const AString & a_ValueName) const;
 
 	/// Returns index of specified key, or noID if not found
 	int FindKey(const AString & keyname) const;

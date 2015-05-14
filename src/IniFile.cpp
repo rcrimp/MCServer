@@ -654,7 +654,7 @@ void cIniFile::Clear(void)
 
 
 
-bool cIniFile::HasValue(const AString & a_KeyName, const AString & a_ValueName)
+bool cIniFile::HasValue(const AString & a_KeyName, const AString & a_ValueName) const
 {
 	// Find the key:
 	int keyID = FindKey(a_KeyName);
@@ -906,6 +906,10 @@ std::vector<std::pair<AString, AString>> cIniFile::GetValues(AString a_keyName)
 {
 	std::vector<std::pair<AString, AString>> ret;
 	int keyID = FindKey(a_keyName);
+	if (keyID == noID)
+	{
+		return ret;
+	}
 	for (size_t valueID = 0; valueID < keys[keyID].names.size(); ++valueID)
 	{
 		ret.emplace_back(keys[keyID].names[valueID], keys[keyID].values[valueID]);

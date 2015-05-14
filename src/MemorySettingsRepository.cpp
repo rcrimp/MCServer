@@ -14,6 +14,25 @@ bool cMemorySettingsRepository::KeyExists(const AString keyname) const
 
 
 
+
+bool cMemorySettingsRepository::HasValue(const AString & a_KeyName, const AString & a_ValueName) const
+{
+	auto outerIter = m_Map.find(a_KeyName);
+	if (outerIter == m_Map.end())
+	{
+		return false;
+	}
+	auto iter = outerIter->second.find(a_ValueName);
+	if (iter == outerIter->second.end())
+	{
+		return false;
+	}
+	return true;
+}
+
+
+
+
 int cMemorySettingsRepository::AddKeyName(const AString & a_keyname)
 {
 	m_Map.emplace(a_keyname, std::unordered_multimap<AString, sValue>{});

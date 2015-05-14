@@ -14,6 +14,8 @@ public:
 
 	virtual bool KeyExists(const AString keyname) const = 0;
 
+	virtual bool HasValue(const AString & a_KeyName, const AString & a_ValueName) const = 0;
+
 	virtual int AddKeyName(const AString & keyname) = 0;
 
 	virtual bool AddKeyComment(const AString & keyname, const AString & comment) = 0;

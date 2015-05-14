@@ -20,6 +20,14 @@ bool cOverridesSettingsRepository::KeyExists(const AString a_keyName) const
 
 
 
+bool cOverridesSettingsRepository::HasValue(const AString & a_KeyName, const AString & a_ValueName) const
+{
+	return m_Overrides->HasValue(a_KeyName, a_ValueName) || m_Main->HasValue(a_KeyName, a_ValueName);
+}
+
+
+
+
 
 int cOverridesSettingsRepository::AddKeyName(const AString & a_keyname)
 {
@@ -82,7 +90,7 @@ bool cOverridesSettingsRepository::DeleteKeyComment(const AString & a_keyname, c
 
 void cOverridesSettingsRepository::AddValue (const AString & a_KeyName, const AString & a_ValueName, const AString & a_Value)
 {
-	if (m_Overrides->KeyExists(a_KeyName) && m_Overrides->GetValue(a_KeyName, a_ValueName) != "")
+	if (m_Overrides->HasValue(a_KeyName, a_ValueName))
 	{
 		m_Overrides->AddValue(a_KeyName, a_ValueName, a_Value);
 	}
@@ -134,7 +142,7 @@ std::vector<std::pair<AString, AString>> cOverridesSettingsRepository::GetValues
 
 AString cOverridesSettingsRepository::GetValue(const AString & a_KeyName, const AString & a_ValueName, const AString & defValue) const
 {
-	if (m_Overrides->KeyExists(a_KeyName) && m_Overrides->GetValue(a_KeyName, a_ValueName) != "")
+	if (m_Overrides->HasValue(a_KeyName, a_ValueName))
 	{
 		return m_Overrides->GetValue(a_KeyName, a_ValueName, defValue);
 	}
@@ -150,7 +158,7 @@ AString cOverridesSettingsRepository::GetValue(const AString & a_KeyName, const 
 
 AString cOverridesSettingsRepository::GetValueSet (const AString & a_KeyName, const AString & a_ValueName, const AString & defValue)
 {
-	if (m_Overrides->KeyExists(a_KeyName) && m_Overrides->GetValue(a_KeyName, a_ValueName) != "")
+	if (m_Overrides->HasValue(a_KeyName, a_ValueName))
 	{
 		return m_Overrides->GetValueSet(a_KeyName, a_ValueName, defValue);
 	}
@@ -166,7 +174,7 @@ AString cOverridesSettingsRepository::GetValueSet (const AString & a_KeyName, co
 
 int cOverridesSettingsRepository::GetValueSetI(const AString & a_KeyName, const AString & a_ValueName, const int defValue)
 {
-	if (m_Overrides->KeyExists(a_KeyName) && m_Overrides->GetValue(a_KeyName, a_ValueName) != "")
+	if (m_Overrides->HasValue(a_KeyName, a_ValueName))
 	{
 		return m_Overrides->GetValueSetI(a_KeyName, a_ValueName, defValue);
 	}
@@ -182,7 +190,7 @@ int cOverridesSettingsRepository::GetValueSetI(const AString & a_KeyName, const 
 
 Int64 cOverridesSettingsRepository::GetValueSetI(const AString & a_KeyName, const AString & a_ValueName, const Int64 defValue)
 {
-	if (m_Overrides->KeyExists(a_KeyName) && m_Overrides->GetValue(a_KeyName, a_ValueName) != "")
+	if (m_Overrides->HasValue(a_KeyName, a_ValueName))
 	{
 		return m_Overrides->GetValueSetI(a_KeyName, a_ValueName, defValue);
 	}
@@ -198,7 +206,7 @@ Int64 cOverridesSettingsRepository::GetValueSetI(const AString & a_KeyName, cons
 
 bool cOverridesSettingsRepository::GetValueSetB(const AString & a_KeyName, const AString & a_ValueName, const bool defValue)
 {
-	if (m_Overrides->KeyExists(a_KeyName) && m_Overrides->GetValue(a_KeyName, a_ValueName) != "")
+	if (m_Overrides->HasValue(a_KeyName, a_ValueName))
 	{
 		return m_Overrides->GetValueSetB(a_KeyName, a_ValueName, defValue);
 	}
@@ -214,7 +222,7 @@ bool cOverridesSettingsRepository::GetValueSetB(const AString & a_KeyName, const
 
 bool cOverridesSettingsRepository::SetValue (const AString & a_KeyName, const AString & a_ValueName, const AString & a_Value, const bool a_CreateIfNotExists)
 {
-	if (m_Overrides->KeyExists(a_KeyName) && m_Overrides->GetValue(a_KeyName, a_ValueName) != "")
+	if (m_Overrides->HasValue(a_KeyName, a_ValueName))
 	{
 		return m_Overrides->SetValue(a_KeyName, a_ValueName, a_Value, a_CreateIfNotExists);
 	}
@@ -230,7 +238,7 @@ bool cOverridesSettingsRepository::SetValue (const AString & a_KeyName, const AS
 
 bool cOverridesSettingsRepository::SetValueI(const AString & a_KeyName, const AString & a_ValueName, const int a_Value, const bool a_CreateIfNotExists)
 {
-	if (m_Overrides->KeyExists(a_KeyName) && m_Overrides->GetValue(a_KeyName, a_ValueName) != "")
+	if (m_Overrides->HasValue(a_KeyName, a_ValueName))
 	{
 		return m_Overrides->SetValueI(a_KeyName, a_ValueName, a_Value, a_CreateIfNotExists);
 	}
@@ -246,7 +254,7 @@ bool cOverridesSettingsRepository::SetValueI(const AString & a_KeyName, const AS
 
 bool cOverridesSettingsRepository::DeleteValue(const AString & a_KeyName, const AString & a_ValueName)
 {
-	if (m_Overrides->KeyExists(a_KeyName) && m_Overrides->GetValue(a_KeyName, a_ValueName) != "")
+	if (m_Overrides->HasValue(a_KeyName, a_ValueName))
 	{
 		return m_Overrides->DeleteValue(a_KeyName, a_ValueName);
 	}
